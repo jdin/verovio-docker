@@ -4,8 +4,10 @@
 
 FROM buildpack-deps:jessie-scm AS build-env
 
+ARG VEROVIO_VERSION=1.1.6
+
 WORKDIR /usr
-RUN apt-get update && apt-get install -y git cmake build-essential && git clone https://github.com/rism-ch/verovio.git && cd verovio && git checkout tags/version-1.1.6 -b version-1.1.6
+RUN apt-get update && apt-get install -y git cmake build-essential && git clone https://github.com/rism-ch/verovio.git && cd verovio && git checkout tags/version-$VEROVIO_VERSION -b version-$VEROVIO_VERSION
 WORKDIR /usr/verovio/tools
 RUN cmake . && make && make install/strip
 
