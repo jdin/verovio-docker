@@ -15,7 +15,7 @@ RUN cmake . && make && make install/strip
 # FINAL IMAGE
 #############
 
-FROM adorsys/openjdk-jre-base:8-minideb
+FROM openjdk:8-jre-alpine
 
 COPY --from=build-env /usr/local/bin/verovio /usr/local/bin/verovio
 COPY --from=build-env /usr/local/share/verovio /usr/local/share/verovio
